@@ -150,7 +150,6 @@ cargo build --features custom-repr --target x86_64-pc-windows-gnu
 | Default | ❌ | None (automatic) | N/A | Native builds |
 | `cross-compile` | ✅ | TOML file | ✅ Yes | Standard cross-compilation |
 | `custom-repr` | ✅ | Environment variables or config file | ✅ Yes | Custom/advanced scenarios with explicit control |
-| Both features | ✅ | Environment variables or config file (custom-repr precedence) | ✅ Yes | Maximum flexibility |
 
 ### Tool: generate-repr-config
 
