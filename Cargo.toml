@@ -19,6 +19,7 @@ cross-compile = ["visa-rs-proc/cross-compile"]
 # Enable custom repr mapping via environment variables
 custom-repr = ["visa-rs-proc/custom-repr"]
 tokio = ["dep:tokio"]
+dynamic_load = ["visa-sys/dynamic_load"]
 
 [dependencies]
 visa-sys = { version = "^0.1.8" }

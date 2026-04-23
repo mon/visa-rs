@@ -64,6 +64,24 @@ pub mod session;
 pub use async_tokio::InstrumentTokioAdapter;
 pub use instrument::Instrument;
 
+/// Runtime loading of the VISA shared library.
+///
+/// When the `dynamic_load` feature is enabled, VISA is resolved via `libloading`
+/// at runtime rather than linked at build time. The library is auto-loaded from
+/// the platform default path on first use; this module exposes the manual hooks
+/// so callers can eagerly load it, point at a custom path, or check whether it
+/// ever loaded successfully.
+#[cfg(feature = "dynamic_load")]
+pub mod dynamic_load {
+    pub use visa_sys::{get_visa_library, load_visa_library, load_visa_library_from_path};
+
+    /// Returns `true` if the VISA library has been loaded (either manually or
+    /// by an auto-load on first call).
+    pub fn is_loaded() -> bool {
+        get_visa_library().is_some()
+    }
+}
+
 use session::{AsRawSs, AsSs, FromRawSs, IntoRawSs, OwnedSs};
 
 pub const TIMEOUT_IMMEDIATE: Duration = Duration::from_millis(vs::VI_TMO_IMMEDIATE as _);
